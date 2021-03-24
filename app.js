@@ -3,7 +3,7 @@ setTimeout(()=>{
     const p1 = document.createElement(`p`);
     p1.innerText = `Hi`;
     div1.append(p1);
-}, 2000);
+}, 1000);
 
 setTimeout(()=>{
     const timenest = document.querySelector(`#timeout-nesting`);
@@ -18,7 +18,7 @@ setTimeout(()=>{
     }, 1000)
 }, 2000);
 
-let time = 1;
+let time = 0;
 const clock = setInterval(() => {
     console.log(time);
     time++;
@@ -29,7 +29,25 @@ stop.addEventListener(`click`, ()=>{
     clearInterval(clock);
 });
 
-setInterval(() => {
-    const cd = doument.mediaquery(`#countdown`);
+const div3 = document.querySelector(`#countdown`);
+const p4 = document.createElement(`p`);
+p4.innterText = `2:00`;
+div3.append(p4);
+let startingSeconds = 120;
+
+const countdown = setInterval(()=>{
+    startingSeconds--;
+    const minutes = Math.floor(startingSeconds / 60);
+    const seconds = startingSeconds % 60;
+
+    if (seconds < 10){
+        p4.innerText = `${minutes}:0${seconds}`;
+    } else {
+        p4.innerText = `${minutes}:${seconds}`;
+    }
     
+    if (startingSeconds === 0){
+        p4.innerText = `TIME IS UP`;
+        clearInterval(countdown);
+    }
 }, 1000);
